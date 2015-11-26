@@ -1,4 +1,24 @@
-#Avatarix 26.11.2015 18:00
+#Avatarix 26.11.2015 22:00
+
+
+#General Information:
+
+Avatarix is a simple GUI developed in Scala. The application fetches all pictures of the IMA14 members from the Github website and displays them within this GUI. Additional information of the course members is provided by clicking on the profile picture, because the avatars are buttons as well.
+
+The main logic of the program is the parser. This function makes a request to the WebService of the Github website. The given information is parsed via Json and then provided in the GUI. The GUI is made by using the Scenebuilder, a visual layout tool for designing JavaFX applications.
+
+#Work Distribution:
+
+- Parser
+	- Carina Herzog, Elza Karimova, Phuong Nguyen
+- GUI
+	- Josip Blazevic, Andreas Schneider
+- Testing
+	- Felix Graf, Timo Hasenbichler, Paul Körner
+- Documentation
+	- Christoph Fürbahs, Alexander Lichtenegger
+- Presentation/Git Management
+	- Michael Fuchs
 
 #Parser
 
@@ -77,7 +97,7 @@ the combination of fxml and css is responsible for the GUI design of the app.
 #Animation
 
 this function is responsible for the animation of infos and is used to slide the infoscreen in and out.
-The attributes define, if the object (obj = in our case the info-screen) should slide in or out. (slideRight = true -> slide out, if false -> slide in)
+The attributes defines, if the object (obj = in our case the info-screen) should slide in or out. (slideRight = true -> slide out, if false -> slide in)
 
     def anim(obj:AnchorPane, slideRight:Boolean):Unit = {
         //define the center of the app screen
@@ -102,7 +122,9 @@ The attributes define, if the object (obj = in our case the info-screen) should 
         pathTrans.play()										//start the animation
     }
 
-Define Buttons to start the corresponding functions
+#Buttons
+
+define buttons to start the corresponding functions
 
     def goBack(): Unit = anim(userinfo,true)
     def user0(): Unit = setUserInfos("user0")
