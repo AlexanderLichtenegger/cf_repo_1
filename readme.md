@@ -1,0 +1,110 @@
+#Avatarix 26.11.2015 18:00
+
+#Parser
+
+The basic parser implementation of Mr Ladstätter was extended by certain objects to get the specific data we want.
+    
+    object GitHub {
+    
+    case class User(login: String,
+                    id: BigDecimal,
+                    avatarUrl: URL,
+                    htmlUrl: URL,
+                    pubRepos: BigDecimal,
+                    followers: BigDecimal,
+                    following: BigDecimal
+                    )
+    
+    object GithubUserProtocol extends DefaultJsonProtocol {
+    
+        implicit object GithubUserJsonFormat extends RootJsonFormat[User] {
+        
+        def write(user: User): JsValue =
+            JsArray(
+            JsString(user.login),
+            JsNumber(user.id),
+            JsString(user.avatarUrl.toString),
+            JsString(user.htmlUrl.toString),
+            JsNumber(user.pubRepos),
+            JsNumber(user.followers),
+            JsNumber(user.following)
+            )
+    
+        def read(value: JsValue): User = {
+            value match {
+            case JsObject(m) =>
+                val JsString(login) = m("login")
+                val JsNumber(id) = m("id")
+                val JsString(a_url) = m("avatar_url")
+                val JsString(html_url) = m("html_url")
+                val JsNumber(p_repos) = m("public_repos")
+                val JsNumber(followers) = m("followers")
+                val JsNumber(following) = m("following")
+                User(login, id, new URL(a_url), new URL(html_url), p_repos , followers, following)
+            case x =>
+                deserializationError("GitHubUser expected.")
+            }}}}}
+
+#GUI
+
+Attention!
+import javafx.util.Duration necessary because there is the same type in the scala import package
+necessary for the animations / parts in JavaFX.
+the combination of fxml and css is responsible for the GUI design of the app.
+
+    //controller contains the description of the functionality of the application
+    class AvatarixController extends Initializable {
+    //attributes are being initialized (everything with an ID)
+    @FXML var userinfo: AnchorPane= _	//this anchorpane is the whole pane with the user infos
+    @FXML var asterix: AnchorPane=_	//this anchorpane is the whole ground pane with all listed users 
+    @FXML var backbutton: Button = _
+    @FXML var user0f: ImageView = _
+    @FXML var user1f: ImageView = _
+    @FXML var user2f: ImageView = _
+
+    @FXML var username0: Label = _
+    @FXML var username1: Label = _
+    @FXML var username2: Label = _
+    
+    @FXML var githubname:Label = _
+    @FXML var avatar:ImageView = _
+    @FXML var fullname:Label = _
+    @FXML var group:Label = _
+    @FXML var publicrepos:Label = _
+    @FXML var followers:Label = _
+    @FXML var following:Label = _
+
+#Animation
+
+this function is responsible for the animation of infos and is used to slide the infoscreen in and out.
+The attributes define, if the object (obj = in our case the info-screen) should slide in or out. (slideRight = true -> slide out, if false -> slide in)
+
+    def anim(obj:AnchorPane, slideRight:Boolean):Unit = {
+        //define the center of the app screen
+        var xMitte = 300 
+        var yMitte = 400
+        
+        var path: Path = new Path() //define new path
+    
+        if (slideRight) {
+        path.getElements.add(new MoveTo(xMitte, yMitte))		        //add the start element to the path
+        path.getElements().add(new CubicCurveTo(xMitte+50, yMitte, xMitte+200, yMitte, xMitte+700, yMitte))  //add a curve to the path with the cordinates, which should be on the curve path, always set the cordinates in a distance to the middle to prevent offset, if the screensize changes in the future
+        } else {
+        path.getElements.add(new MoveTo(xMitte+700, yMitte))			//same as before, only different startpoint
+        path.getElements().add(new CubicCurveTo(xMitte+200, yMitte, xMitte+50, yMitte, xMitte, yMitte))		//same as before, only different cordinates
+        }
+    
+        var pathTrans : PathTransition = new PathTransition()	//define a new pathtransition
+        pathTrans.setDuration(new Duration(200))				//seth the length of the animation 
+        pathTrans.setNode(obj)									//set the object, wich should be moved
+        pathTrans.setPath(path)									//set the path, which should be animated
+        pathTrans.setAutoReverse(false)							//set autoreverse to false
+        pathTrans.play()										//start the animation
+    }
+
+Define Buttons to start the corresponding functions
+
+    def goBack(): Unit = anim(userinfo,true)
+    def user0(): Unit = setUserInfos("user0")
+    def user1(): Unit = setUserInfos("user0")
+
