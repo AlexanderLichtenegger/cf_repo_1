@@ -1,7 +1,6 @@
 #Avatarix 26.11.2015 22:30
 
 ![<fhLogo>](<https://www.fh-joanneum.at/custom/images/logo_1001.png>)
-
 ![<fhIma>](<http://www.fh-joanneum.at/global/show_picture.asp?id=aaaaaaaaaajahgt>)
 
 #General Information
