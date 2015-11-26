@@ -1,13 +1,15 @@
-#Avatarix 26.11.2015 22:00
+#Avatarix 26.11.2015 22:30
 
+![<fhLogo>](<https://www.fh-joanneum.at/custom/images/logo_1001.png>)
+![<fhIma>](<http://www.fh-joanneum.at/global/show_picture.asp?id=aaaaaaaaaajahgt>)
 
-#General Information:
+#General Information
 
 Avatarix is a simple GUI developed in Scala. The application fetches all pictures of the IMA14 members from the Github website and displays them within this GUI. Additional information of the course members is provided by clicking on the profile picture, because the avatars are buttons as well.
 
 The main logic of the program is the parser. This function makes a request to the WebService of the Github website. The given information is parsed via Json and then provided in the GUI. The GUI is made by using the Scenebuilder, a visual layout tool for designing JavaFX applications.
 
-#Work Distribution:
+#Work Distribution
 
 - Parser
 	- Carina Herzog, Elza Karimova, Phuong Nguyen
@@ -75,7 +77,7 @@ the combination of fxml and css is responsible for the GUI design of the app.
     //controller contains the description of the functionality of the application
     class AvatarixController extends Initializable {
     //attributes are being initialized (everything with an ID)
-    @FXML var userinfo: AnchorPane= _	//this anchorpane is the whole pane with the user infos
+    @FXML var userinfo: AnchorPane= _	//this anchorpane is the whole pane with the user information
     @FXML var asterix: AnchorPane=_	//this anchorpane is the whole ground pane with all listed users 
     @FXML var backbutton: Button = _
     @FXML var user0f: ImageView = _
@@ -96,7 +98,7 @@ the combination of fxml and css is responsible for the GUI design of the app.
 
 #Animation
 
-this function is responsible for the animation of infos and is used to slide the infoscreen in and out.
+this function is responsible for the animation of information and is used to slide the infoscreen in and out.
 The attributes defines, if the object (obj = in our case the info-screen) should slide in or out. (slideRight = true -> slide out, if false -> slide in)
 
     def anim(obj:AnchorPane, slideRight:Boolean):Unit = {
