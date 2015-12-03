@@ -21,11 +21,7 @@ The main goals are:
 	- homeworks
 - lecturer evaluates the exams, projects, assignments and homeworks
 - the software calculates the grades automatically
-- reports
-	- who has the best grades?
-	- who is going to be negative?
-	- assign students to classes
-	
+
 
 #About this app
 
