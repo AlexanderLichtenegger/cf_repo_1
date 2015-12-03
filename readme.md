@@ -8,19 +8,19 @@ by [Christoph Fürbahs](http://www.fuerbahs.com) and [Alexander Lichtenegger](ht
 
 #General Information
 Courseware is a Management System for our Software Engineering Basics Course with Mr Robert Ladstätter.
-The app was developed in Scala with a SQLite database.
+The app is developed in Scala with a SQLite database.
 The main goals are:
 - Managing the data of
 	- students
-	- teachers
+	- lecturers
+	- rooms ???
+	- grades
+	- exams
 	- projects
 	- assignments
-	- rooms
-	- timetable
-	- grades
 	- homeworks
-- lecturer types in the points according to the homework and projects
-- our software calculates the grades automatically
+- lecturer evaluates the exams, projects, assignments and homeworks
+- the software calculates the grades automatically
 - reports
 	- who has the best grades?
 	- who is going to be negative?
